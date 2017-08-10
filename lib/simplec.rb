@@ -1,5 +1,5 @@
 require "simplec/engine"
 
 module Simplec
-  # Your code goes here...
+  # TODO configuration options
 end

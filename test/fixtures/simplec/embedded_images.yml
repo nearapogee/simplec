@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  embeddable_type: MyString
+  embeddable_id: 
+  asset_uid: MyString
+  asset_name: MyString
+
+two:
+  embeddable_type: MyString
+  embeddable_id: 
+  asset_uid: MyString
+  asset_name: MyString
