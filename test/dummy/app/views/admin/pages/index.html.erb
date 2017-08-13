@@ -1,0 +1,42 @@
+<h1>admin/pages#index</h1>
+
+<% if current_user.admin? || current_user.sysadmin? %>
+  <ul>
+    <% ::Page.subclasses.each do |cls| %>
+      <li>
+        <%= link_to "+ Add #{cls.name.demodulize} Page", new_admin_page_path(type: cls.name), class: 'btn btn-info btn-xs' %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Subdomain</th>
+      <th>URL</th>
+      <th>Type</th>
+      <th>Title</th>
+      <th>Layout</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= page.subdomain.try(:name) %></td>
+        <td>
+          <%= link_to page.path, simplec_url(page), class: 'text-info', target: :_blank %>
+        </td>
+        <td><%= page.type.to_s.demodulize %></td>
+        <td><%= page.title %></td>
+        <td><%= page.layout %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_page_path(page),
+            class: 'btn btn-success btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

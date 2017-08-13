@@ -9,6 +9,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <ul class="list-inline">
+        <li><%= link_to 'Dashboard', admin_root_url %></li>
+        <li><%= link_to 'Subdomains', admin_subdomains_url %></li>
+        <li><%= link_to 'Pages', admin_pages_url %></li>
+        <li><%= link_to 'Documents', admin_documents_url %></li>
+        <li class="pull-right"><%= link_to "Sign out", admin_session_path,  method: :delete, class: 'btn btn-xs btn-danger' %></li>
+      </ul>
+      <%= yield %>
+    </div>
   </body>
 </html>

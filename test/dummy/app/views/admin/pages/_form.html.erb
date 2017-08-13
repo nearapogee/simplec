@@ -1,0 +1,37 @@
+<%= form_for [:admin, @page.becomes(::Page)] do |f| %>
+  <% f.object = @page %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <% unless f.object.errors.blank? %>
+        <ul>
+          <% f.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Application Defined Fields</h2>
+      <%# TODO page_fields(f) %>
+      <% @page.field_options.each do |field| %>
+        <%= page_field f, field %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <h2>Simplec Fields</h2>
+      <%= render "simplec_fields", f: f %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
+  </div>
+<% end %>

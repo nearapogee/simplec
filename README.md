@@ -21,11 +21,11 @@ over the entire ecosystem.
   We still hate dependencies, but this is a necessity and the best option.
 
 - summernote
-  We still hate dependencies, but this is a necessity and the best option.
+  Source is included.
   _Only required on admin side of things -- a small consolation._
 
-- bootstrap
-  Really don't want this, but a dependency of summernote for now.
+- bootstrap-sass >= 3.0.0
+  Required if you want to use editor fields (which utilize summernote)
   _Only required on admin side of things -- a small consolation._
 
 - jquery
@@ -55,10 +55,8 @@ over the entire ecosystem.
   your own.)
 
 - simplec-admin: Opinionated, prebuilt way of managing pages. Take it or leave
-  it.
-
-- simplec-admin-gen: Generate controllers and views (basically a scaffold) to
-  be modified as you see fit.
+  it. Or don't mount it and generate scaffold controllers and views for basic
+  functions.
 
 - simplec-events
 
@@ -69,6 +67,23 @@ over the entire ecosystem.
 3. Create pages and corresponding templates
 4. Build, generator, or use an auxilary gem for page admin.
 5. Let users loose.
+
+'www' is considered the default subdomain.
+
+'admin' subdomain is reserved for administration functions if you wish.
+
+If you want to modify all pages you should edit ::Page < Simplec::Page, this
+will be generated in an installer later.
+
+If you want to test a subclass of ::Page, make sure test has ::Page defined.
+
+Create a public layout. The public layout is the default. This will be
+generated in an installer later.
+
+Put page model definitions in `app/models/page/`.
+
+Put model templates in `app/views/pages/`. AND prefix with an underscore (_),
+i.e. `_home.html.erb`.
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -85,6 +100,59 @@ gem 'simplec'
 1. Use it and file create issues. Somethings are core, other things will be
   relegated to 3rd party extensions.
 2. Pull requests are welcome. See rule #1.
+
+## TODO
+- Document `lib/simplec/controller_extensions.rb`
+
+- Document why _subdomain in subdomain form in admin.
+
+- rails generate simplec:install
+  Install app/models/page.rb, app/models/page/
+  initializer if needed, with options documented
+
+- simplec_path/simplec_url caching
+
+## Running dummy application
+
+1. Create simplec postgres user
+
+        # -s for superuser in development
+        createuser -s simplec
+
+2. Create databases and add pgcrypto
+
+        rake db:create
+
+        # required for gen_random_uuid() function
+        # used for ids in Simplec models
+        #
+        psql simplec_development -c "CREATE EXTENSION pgcrypto;"
+
+3. Migrate database
+
+        rake db:migrate
+
+4. Install Dragonfly
+
+        rails generate dragonfly
+
+  Configure as required. Documentation is here: http://markevans.github.io/dragonfly/
+
+5. Install Bootstrap
+
+```ruby
+gem 'bootstrap-sass', "~> 3.3.7'
+```
+
+6. Install imagemagick
+
+  Varies per operating system.
+
+Read the rest here: https://github.com/twbs/bootstrap-sass
+
+Bootstrap is only required for the admin portions of the application.
+Optionally, you can create a separate set of assets for only the admin via
+standard Rails methods.
 
 ## Contributors
 

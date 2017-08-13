@@ -45,11 +45,6 @@ module Simplec
 			as: :embeddable,
 			dependent: :delete_all
 
-		has_many :permissions
-		has_many :permissible_users,
-			through: :permissions,
-			source: :user
-
 		validates :type,
 			presence: true
 		validates :path,
@@ -63,13 +58,6 @@ module Simplec
 		before_validation :match_parent_subdomain
 		before_validation :build_path
 		after_save :link_embedded_images!
-
-    # TODO REMOVE accessible_by
-    #
-		scope :accessible_by, ->(user) {
-			user.admin? || user.sysadmin? ?
-				all : joins(:permissible_users).where(users: {id: user.id})
-		}
 
 		# Define a field on the page.
 		#
@@ -110,7 +98,8 @@ module Simplec
 		# Return a constantized type, whitelisted by known subclasses.
 		#
 		def self.type(type)
-			raise 'Unsupported Page Type' unless self.subclasses.map(&:name).
+      ::Page rescue raise '::Page not defined, define it in app/models'
+			raise 'Unsupported Page Type; define in app/models/page/' unless ::Page.subclasses.map(&:name).
 				member?(type)
 			type.constantize
 		end
@@ -134,7 +123,6 @@ module Simplec
 		def field_options
 			self.class.fields.values
 		end
-
 
 		# List parents, closest to furthest.
 		#
@@ -213,5 +201,3 @@ module Simplec
   end
 end
 
-# TODO fix require dependency for pages
-Dir["#{Rails.root}/app/models/page/*.rb"].each {|file| require_dependency file }

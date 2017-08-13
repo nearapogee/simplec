@@ -1,0 +1,11 @@
+<h1>admin/subdomains#edit</h1>
+
+<%= render 'form' %>
+
+<% if current_user.admin? || current_user.sysadmin? %>
+  <%= link_to 'Remove', admin_subdomain_path(@subdomain),
+    method: :delete,
+    class: 'btn btn-danger',
+    data: {confirm: 'Remove permanently?'}
+  %>
+<% end %>

@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  default_layout: MyString
-
-two:
-  name: MyString
-  default_layout: MyString
+www:
+  name: www
+  default_layout: 'public'

@@ -1,0 +1,27 @@
+<h1>admin/subdomains#index</h1>
+<ul>
+  <li>
+    <%= link_to "+ Add Subdomain", new_admin_subdomain_path, class: 'btn btn-info btn-xs' %>
+  </li>
+</ul>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Default Layout</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subdomains.each do |subdomain| %>
+      <tr>
+        <td><%= subdomain.name %></td>
+        <td><%= subdomain.default_layout %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_subdomain_path(subdomain), class: 'btn btn-success btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

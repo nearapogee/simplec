@@ -1,0 +1,59 @@
+<div class="form-group">
+  <%= f.label :type, class: 'control-label' %>
+  <%= f.text_field :type, class: 'form-control', disabled: 'disabled' %>
+  <%= f.hidden_field :type %>
+  <p class="help-block">This cannot be changed.</p>
+</div>
+
+<div class="form-group">
+  <%= f.label :layout, class: 'control-label' %>
+  <%= f.select :layout,
+    Simplec::Subdomain.new.layouts,
+    {include_blank: true},
+    class: 'form-control'
+  %>
+  <p class="help-block">If blank, then the subdomain's default layout will be used. (Will usually be left blank.)</p>
+</div>
+
+<div class="form-group">
+  <%= f.label :subdomain_id, 'Subdomain', class: 'control-label' %>
+  <%= f.select :subdomain_id,
+    Simplec::Subdomain.order(name: :asc).map{|s| [s.name, s.id]},
+    {include_blank: true},
+    class: 'form-control'
+  %>
+  <p class="help-block">If this page has a parent, saving will force this subdomain to match the parent.</p>
+</div>
+
+<div class="form-group">
+  <%= f.label :parent_id, 'Parent page', class: 'control-label'%>
+  <%= f.select :parent_id,
+    Page.order(path: :asc).map {|p| [simplec_url(p), p.id]},
+    {include_blank: true},
+    class: 'form-control'
+  %>
+  <p class="help-block"><b>NOTE:</b> If this page does NOT have a parent and you update the subdomain, all of the child pages will need to be updated to match.</p>
+</div>
+
+<% if f.object.path.present? && f.object.subdomain.present? %>
+  <div class="form-group">
+    <%= f.label :path, class: 'control-label' %>
+    <p class="form-control-static"><%= simplec_url(f.object) %></p>
+    <p class="help-block">Updated on save. Not editable.</p>
+  </div>
+<% end %>
+<div class="form-group">
+  <%= f.label :slug, class: 'control-label' %>
+  <%= f.text_field :slug, class: 'form-control' %>
+  <p class="help-block">This is how the page shows in the URL. Please use dashes instead of underscores for consistency. '-' not '_'</p>
+</div>
+
+<div class="form-group">
+  <%= f.label :title, class: 'control-label' %>
+  <%= f.text_field :title, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :meta_description, class: 'control-label' %>
+  <%= f.text_field :meta_description, class: 'form-control' %>
+</div>

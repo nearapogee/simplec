@@ -1,0 +1,14 @@
+<div class="form-group">
+  <% if f.object.send(name) %>
+    <%= image_tag f.object.send(name).thumb('100x').url %>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :"remove_#{name}" %>
+        Remove
+      </label>
+    </div>
+  <% end %>
+  <%= f.label name %>
+  <%= f.file_field name %>
+  <%= f.hidden_field :"retained_#{name}" %>
+</div>

@@ -1,0 +1,5 @@
+<div class="form-group">
+  <%= f.label name, class: 'control-label' %>
+  <%= f.hidden_field name, id: "#{name}-#{f.object.object_id}"%>
+  <%= tag :div, class: 'editor-field', data: {input: "##{name}-#{f.object.object_id}"} %></div>
+</div>

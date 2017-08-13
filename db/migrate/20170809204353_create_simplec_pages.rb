@@ -3,8 +3,9 @@ class CreateSimplecPages < ActiveRecord::Migration[5.0]
     create_table :simplec_pages, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :type
       t.uuid :subdomain_id
-      t.string :slug
+      t.uuid :parent_id
       t.string :path
+      t.string :slug
       t.string :title
       t.string :meta_description
       t.jsonb :fields

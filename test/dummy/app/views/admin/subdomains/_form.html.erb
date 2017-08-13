@@ -1,0 +1,36 @@
+<%= form_for [:admin, @subdomain], as: :_subdomain do |f| %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <% unless f.object.errors.blank? %>
+        <ul>
+          <% f.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.label :name, class: 'control-label' %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <p class="help-block">This is the value of the subdomain, i.e. foo in foo.example.com</p>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :default_layout, class: 'control-label' %>
+        <%= f.select :default_layout,
+          f.object.layouts,
+          {include_blank: true},
+          class: 'form-control'
+        %>
+        <p class="help-block">If blank, then the application layout will be used.</p>
+      </div>
+
+      <%= f.submit class: 'btn btn-info' %>
+    </div>
+  </div>
+<% end %>
