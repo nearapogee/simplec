@@ -103,28 +103,28 @@ i.e. `_home.html.erb`.
 
 1. Install simplec in your Rails application.
 
-  See installation section.
+    See installation section.
 
 2. Build and admin interface with the rest of your application.
 
-  Simplec doesn't tell you how to do this. Currently, you should look at the
-  test/dummy application for inspiration.
+    Simplec doesn't tell you how to do this. Currently, you should look at the
+    test/dummy application for inspiration.
 
 3. Then define a model:
 
-  ```ruby
-  # app/models/page/home.rb
-  class Page::Home < ::Page
-    field :tagline
-  end
-  ```
+    ```ruby
+    # app/models/page/home.rb
+    class Page::Home < ::Page
+      field :tagline
+    end
+    ```
 
 4. And the corresponding template:
 
-  ```erb
-  <h1>My Application</h1>
-  <h2><%= @page.tagline %></h2>
-  ```
+    ```erb
+    <h1>My Application</h1>
+    <h2><%= @page.tagline %></h2>
+    ```
 
 5. And create a page in your admin.
 
@@ -135,19 +135,19 @@ i.e. `_home.html.erb`.
 
 1. Add this line to your application's Gemfile:
 
-  ```ruby
-  gem 'pg'
-  gem 'simplec'
-  # plus optional gems
-  ```
+    ```ruby
+    gem 'pg'
+    gem 'simplec'
+    # plus optional gems
+    ```
 
 2. Mount the engine
 
-  ```ruby
-  Rails.application.routes.draw do
-    mount Simplec::Engine => "/"
-  end
-  ```
+    ```ruby
+    Rails.application.routes.draw do
+      mount Simplec::Engine => "/"
+    end
+    ```
 
 ## Roadmap
 1. Remove as many dependencies as possible.
@@ -196,9 +196,9 @@ i.e. `_home.html.erb`.
 
 5. Install Bootstrap
 
-  ```ruby
-  gem 'bootstrap-sass', "~> 3.3.7'
-  ```
+    ```ruby
+    gem 'bootstrap-sass', "~> 3.3.7'
+    ```
 
   Read the rest here: https://github.com/twbs/bootstrap-sass
 
