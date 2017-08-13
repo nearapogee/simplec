@@ -11,26 +11,40 @@ over the entire ecosystem.
 ## Dependencies
 - rails >= 5.0.5
 
-- pg, postgres >= 9.5
-  We hate dependencies, but postgres is just too good.
+- pg >= 0.21.0; postgres >= 9.5
+
+  We hate dependencies, but postgres is just too good. We use it for search
+  and JSONB.
 
 - imagemagick
+
   For image processing.
 
 - dragonfly
+
   We still hate dependencies, but this is a necessity and the best option.
 
+## Recommended Dependencies
+
 - summernote
-  Source is included.
-  _Only required on admin side of things -- a small consolation._
+
+  Used for editor fields. Source is included.
 
 - bootstrap-sass >= 3.0.0
-  Required if you want to use editor fields (which utilize summernote)
-  _Only required on admin side of things -- a small consolation._
+
+  Required if you want to use editor fields (which utilize summernote).
 
 - jquery
+
   Hope to be able to remove this, but required for summernote/bootstrap for now.
-  _Only required on admin side of things -- a small consolation._
+
+**The recommended dependencies are only required for the admin portions of your
+application.**
+
+_Optionally, you can create a separate set of assets for only the admin via
+standard Rails methods. Or you could not include them and deal with the
+fallout. ;-)_
+
 
 ## Features
 - Pages with Templates
@@ -85,13 +99,55 @@ Put page model definitions in `app/models/page/`.
 Put model templates in `app/views/pages/`. AND prefix with an underscore (_),
 i.e. `_home.html.erb`.
 
-## Installation
-Add this line to your application's Gemfile:
+### Steps
 
-```ruby
-gem 'pg'
-gem 'simplec'
-```
+1. Install simplec in your Rails application.
+
+  See installation section.
+
+2. Build and admin interface with the rest of your application.
+
+  Simplec doesn't tell you how to do this. Currently, you should look at the
+  test/dummy application for inspiration.
+
+3. Then define a model:
+
+  ```ruby
+  # app/models/page/home.rb
+  class Page::Home < ::Page
+    field :tagline
+  end
+  ```
+
+4. And the corresponding template:
+
+  ```erb
+  <h1>My Application</h1>
+  <h2><%= @page.tagline %></h2>
+  ```
+
+5. And create a page in your admin.
+
+6. Done.
+
+
+## Installation
+
+1. Add this line to your application's Gemfile:
+
+  ```ruby
+  gem 'pg'
+  gem 'simplec'
+  # plus optional gems
+  ```
+
+2. Mount the engine
+
+  ```ruby
+  Rails.application.routes.draw do
+    mount Simplec::Engine => "/"
+  end
+  ```
 
 ## Roadmap
 1. Remove as many dependencies as possible.
@@ -140,19 +196,15 @@ gem 'simplec'
 
 5. Install Bootstrap
 
-```ruby
-gem 'bootstrap-sass', "~> 3.3.7'
-```
+  ```ruby
+  gem 'bootstrap-sass', "~> 3.3.7'
+  ```
+
+  Read the rest here: https://github.com/twbs/bootstrap-sass
 
 6. Install imagemagick
 
   Varies per operating system.
-
-Read the rest here: https://github.com/twbs/bootstrap-sass
-
-Bootstrap is only required for the admin portions of the application.
-Optionally, you can create a separate set of assets for only the admin via
-standard Rails methods.
 
 ## Contributors
 
