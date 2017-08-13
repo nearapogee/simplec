@@ -13,30 +13,30 @@ over the entire ecosystem.
 
 - pg >= 0.21.0; postgres >= 9.5
 
-  We hate dependencies, but postgres is just too good. We use it for search
-  and JSONB.
+    We hate dependencies, but postgres is just too good. We use it for search
+    and JSONB.
 
 - imagemagick
 
-  For image processing.
+    For image processing.
 
 - dragonfly
 
-  We still hate dependencies, but this is a necessity and the best option.
+    We still hate dependencies, but this is a necessity and the best option.
 
 ## Recommended Dependencies
 
 - summernote
 
-  Used for editor fields. Source is included.
+    Used for editor fields. Source is included.
 
 - bootstrap-sass >= 3.0.0
 
-  Required if you want to use editor fields (which utilize summernote).
+    Required if you want to use editor fields (which utilize summernote).
 
-- jquery
+- jquery-rails
 
-  Hope to be able to remove this, but required for summernote/bootstrap for now.
+    Hope to be able to remove this, but required for summernote/bootstrap for now.
 
 **The recommended dependencies are only required for the admin portions of your
 application.**
@@ -151,6 +151,17 @@ i.e. `_home.html.erb`.
     ```
 
 ## Roadmap
+
+1. Finish example admin.
+
+1. Installer `rails generater simplec:install`
+
+1. Search
+
+1. Caching
+
+1. Optional Gems
+
 1. Remove as many dependencies as possible.
 
 ## Contributing
@@ -159,6 +170,7 @@ i.e. `_home.html.erb`.
 2. Pull requests are welcome. See rule #1.
 
 ## TODO
+
 - Document `lib/simplec/controller_extensions.rb`
 
 - Document why _subdomain in subdomain form in admin.
