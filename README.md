@@ -122,6 +122,7 @@ i.e. `_home.html.erb`.
 4. And the corresponding template:
 
     ```erb
+    <!-- app/views/pages/_home.html.erb -->
     <h1>My Application</h1>
     <h2><%= @page.tagline %></h2>
     ```
