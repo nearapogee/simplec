@@ -2,7 +2,7 @@
   <%= f.label name, class: 'control-label' %>
   <% if f.object.send(name) %>
     <div>
-      <%= image_tag f.object.send(name).thumb('100x').url %>
+      <p class="form-control-static"><%= f.object.send(name).name %></p>
       <div class="checkbox">
         <label>
           <%= f.check_box :"remove_#{name}" %>

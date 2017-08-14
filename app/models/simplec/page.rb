@@ -62,7 +62,7 @@ module Simplec
 		# Define a field on the page.
 		#
 		# - name - name of field
-		# - options[:type] - :string (default), :text, :editor, [:file], :image
+		# - options[:type] - :string (default), :text, :editor, :file, :image
 		#   :string - yields a text input
 		#   :text - yields a textarea
 		#   :editor - yields a summernote editor

@@ -4,3 +4,18 @@
 <p><%= @page.about %></p>
 
 <div class="wysiwyg"><%= @page.mission.to_s.html_safe %></div>
+
+<% if @page.logo %>
+  <div>
+    <%= image_tag @page.logo.thumb('400x').url, alt: @page.logo.name %>
+  </div>
+<% else %>
+  <p>No logo selected. Edit page to add one.</p>
+<% end %>
+
+
+<% if @page.worksheet %>
+  <%= link_to 'Worksheet (Download)', @page.worksheet.url, download: true %>
+<% else %>
+  <p>No worksheet selected. Edit page to add one.</p>
+<% end %>
