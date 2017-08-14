@@ -101,6 +101,8 @@ i.e. `_home.html.erb`.
 
 TODO override field types howto
 
+TODO explain using uuids for keys + pgcrypto
+
 ### Steps
 
 1. Install simplec in your Rails application.
@@ -146,20 +148,37 @@ TODO override field types howto
     # plus optional gems
     ```
 
-2. Mount the engine
+    At this point it is assumed you are integrating Simplec into an existing
+    application, logically then you have your database already configured.
+    However, Simplec requires some postgres configuration. Please read the
+    section below on Postgres.
+
+2. Install and run the migrations
+
+    ```shell
+    rake simplec:install:migrations
+    rake db:migrate
+    ```
+
+3. Mount the engine
 
     ```ruby
     Rails.application.routes.draw do
       mount Simplec::Engine => "/"
     end
     ```
-3. Optional - Install bootstap-sass.
+
+4. Optional - Install bootstap-sass.
+
+    ```ruby
+    gem 'bootstrap-sass', "~> 3.3.7'
+    ```
 
     Currenty, we have worked out integration with Bootstrap > 3 and are waiting
     for the dust to settle on V4. See directions here:
     https://github.com/twbs/bootstrap-sass
 
-4. Optional - If you want to use the bundled summernote:
+5. Optional - If you want to use the bundled summernote:
 
     Load the JS in your application's manifest.
 
@@ -171,10 +190,40 @@ TODO override field types howto
     Please note that this needs to be loaded after jquery and bootstrap.
 
     ```css
-    @import "simplec/summernote.css";
+    @import "simplec/summernote";
     ```
 
     Please note that this needs to be loaded after bootstrap.
+
+## Postgres
+
+    Note you will need to do this in your production environment as well. 
+
+    On some operating systems, `pgcrypto` is in a separate `postgres` package,
+    be sure to install that as well.
+
+    The `pgcrypto` extension is required for the `gen_random_uuid()` function
+    used to generate uuid primary keys.
+
+1. Create your application postgres user (matching database.yml)
+
+    ```shell
+    # -s for superuser in development
+    createuser -s myapp
+    ```
+
+2. Create databases and add pgcrypto
+
+    ```shell
+    # create development/test databases
+    rake db:create
+
+    # required for gen_random_uuid() function
+    # used for ids in Simplec models
+    #
+    psql myapp_development -c "CREATE EXTENSION pgcrypto;"
+    psql myapp_test -c "CREATE EXTENSION pgcrypto;"
+    ```
 
 ## Roadmap
 
