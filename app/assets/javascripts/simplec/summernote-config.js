@@ -1,10 +1,11 @@
 // Summernote
 //
+//
 $.summernote.options.callbacks.onImageUpload = function(files) {
   // Dumb but a default or instance callback required to get the
   // event handler to fire.
   console.log('image upload:', files);
-}
+};
 $.summernote.options.toolbar = [
   ['style', ['style']],
   ['font', ['bold', 'italic', 'underline', 'clear']],
@@ -21,8 +22,11 @@ $.summernote.options.toolbar = [
   ['help', ['help']]
 ];
 
-// Summernote Event Handlers
-$(document).on('turbolinks:load', function() {
+if (!window.simplec) window.simplec = {};
+
+window.simplec.initSummernote = function() {
+  window.simplec.summernoteInitialized = true;
+
   $('.editor-field').on('summernote.init', function(event) {
 
     // Material Kit Hack
@@ -71,4 +75,8 @@ $(document).on('turbolinks:load', function() {
     maxHeight: 1200
   });
 
+};
+
+$(document).on('ready turbolinks:load', function() {
+  if (!window.simplec.summernoteInitialized) window.simplec.initSummernote();
 });

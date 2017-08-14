@@ -99,6 +99,8 @@ Put page model definitions in `app/models/page/`.
 Put model templates in `app/views/pages/`. AND prefix with an underscore (_),
 i.e. `_home.html.erb`.
 
+TODO override field types howto
+
 ### Steps
 
 1. Install simplec in your Rails application.
@@ -127,6 +129,8 @@ i.e. `_home.html.erb`.
     <h2><%= @page.tagline %></h2>
     ```
 
+    Note: You need to call `#html_safe` on fields with `type: :editor`.
+
 5. And create a page in your admin.
 
 6. Done.
@@ -149,12 +153,36 @@ i.e. `_home.html.erb`.
       mount Simplec::Engine => "/"
     end
     ```
+3. Optional - Install bootstap-sass.
+
+    Currenty, we have worked out integration with Bootstrap > 3 and are waiting
+    for the dust to settle on V4. See directions here:
+    https://github.com/twbs/bootstrap-sass
+
+4. Optional - If you want to use the bundled summernote:
+
+    Load the JS in your application's manifest.
+
+    ```javascript
+    //= require simplec/summernote
+    //= require simplec/summernote-config
+    ```
+
+    Please note that this needs to be loaded after jquery and bootstrap.
+
+    ```css
+    @import "simplec/summernote.css";
+    ```
+
+    Please note that this needs to be loaded after bootstrap.
 
 ## Roadmap
 
 1. Finish example admin.
 
 1. Installer `rails generater simplec:install`
+
+1. Upgrade summernote from 0.8.2 to 0.8.6
 
 1. Search
 

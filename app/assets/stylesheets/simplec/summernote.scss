@@ -8,15 +8,17 @@
  *
  * Date: 2016-08-07T05:11Z
  *
- * MODIFIED: Unminified and VIM substitution :%s/url("font\//asset-url("/gc
+ * MODIFIED: Unminified, renamed with .scss, and VIM substitution:
+ * :%s/url("font\//asset-url("simplec\//gc
  *
  */
+
 @font-face {
     font-family: "summernote";
     font-style: normal;
     font-weight: normal;
-    src: asset-url("summernote.eot?ad8d7e2d177d2473aecd9b35d16211fb");
-    src: asset-url("summernote.eot?#iefix") format("embedded-opentype"), asset-url("summernote.woff?ad8d7e2d177d2473aecd9b35d16211fb") format("woff"), asset-url("summernote.ttf?ad8d7e2d177d2473aecd9b35d16211fb") format("truetype")
+    src: asset-url("simplec/summernote.eot?ad8d7e2d177d2473aecd9b35d16211fb");
+    src: asset-url("simplec/summernote.eot?#iefix") format("embedded-opentype"), asset-url("simplec/summernote.woff?ad8d7e2d177d2473aecd9b35d16211fb") format("woff"), asset-url("simplec/summernote.ttf?ad8d7e2d177d2473aecd9b35d16211fb") format("truetype")
 }
 
 [class^="note-icon-"]:before,

@@ -1,2 +1,6 @@
 <h1>Dummy</h1>
 <h2><%= @page.tagline %></h2>
+
+<p><%= @page.about %></p>
+
+<div class="wysiwyg"><%= @page.mission.to_s.html_safe %></div>
