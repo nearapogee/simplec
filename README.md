@@ -168,7 +168,17 @@ TODO explain using uuids for keys + pgcrypto
     end
     ```
 
-4. Optional - Install bootstap-sass.
+4. Install and configure `dragonfly`
+
+    ```shell
+    rails generate dragonfly
+    ```
+
+    Then configure `config/initializers/dragonfly.rb`.
+
+    It is recommended to use `rack/cache` or some other HTTP caching solution.
+
+5. Optional - Install bootstap-sass.
 
     ```ruby
     gem 'bootstrap-sass', "~> 3.3.7'
@@ -178,7 +188,7 @@ TODO explain using uuids for keys + pgcrypto
     for the dust to settle on V4. See directions here:
     https://github.com/twbs/bootstrap-sass
 
-5. Optional - If you want to use the bundled summernote:
+6. Optional - If you want to use the bundled summernote:
 
     Load the JS in your application's manifest.
 
@@ -193,17 +203,18 @@ TODO explain using uuids for keys + pgcrypto
     @import "simplec/summernote";
     ```
 
-    Please note that this needs to be loaded after bootstrap.
+    Please note that this needs to be loaded after bootstrap. And to use
+    `@import` statements, you must use `.scss` files.
 
 ## Postgres
 
-    Note you will need to do this in your production environment as well. 
+Note you will need to do this in your production environment as well. 
 
-    On some operating systems, `pgcrypto` is in a separate `postgres` package,
-    be sure to install that as well.
+On some operating systems, `pgcrypto` is in a separate `postgres` package,
+be sure to install that as well.
 
-    The `pgcrypto` extension is required for the `gen_random_uuid()` function
-    used to generate uuid primary keys.
+The `pgcrypto` extension is required for the `gen_random_uuid()` function
+used to generate uuid primary keys.
 
 1. Create your application postgres user (matching database.yml)
 
@@ -224,6 +235,13 @@ TODO explain using uuids for keys + pgcrypto
     psql myapp_development -c "CREATE EXTENSION pgcrypto;"
     psql myapp_test -c "CREATE EXTENSION pgcrypto;"
     ```
+
+## imagemagick
+
+Installation varies per operating system. Image magic is used by dragonfly
+for on the fly (then cached) image manipulation.
+
+See this page for a good cheat sheet: http://markevans.github.io/dragonfly/imagemagick
 
 ## Roadmap
 
@@ -278,23 +296,6 @@ TODO explain using uuids for keys + pgcrypto
 
         rake db:migrate
 
-4. Install Dragonfly
-
-        rails generate dragonfly
-
-  Configure as required. Documentation is here: http://markevans.github.io/dragonfly/
-
-5. Install Bootstrap
-
-    ```ruby
-    gem 'bootstrap-sass', "~> 3.3.7'
-    ```
-
-  Read the rest here: https://github.com/twbs/bootstrap-sass
-
-6. Install imagemagick
-
-  Varies per operating system.
 
 ## Contributors
 
