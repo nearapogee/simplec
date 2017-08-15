@@ -1,5 +1,7 @@
 module Simplec
   module EmbeddedImageActions
+
+    # @private
     module ClassMethods; end
 
     module InstanceMethods
