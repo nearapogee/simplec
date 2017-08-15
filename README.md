@@ -244,9 +244,10 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 
 1. TODOS:
 
-    - Embedded image id (integer -> uuid)
-
     - Check doc view helpers
+
+    - Add config options for uuid vs integer ids, maybe check if page is using
+      uuid/id if table exists to determine going forward. Add note in README
 
     - Throw clear warning when creating a page without a type
 
@@ -259,6 +260,8 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
       initializer if needed, with options documented
 
     - rewrite beginning part of usage
+
+    - utilize thread local variable for found subdomain in #subdomain
 
     - simplec_path/simplec_url caching
 

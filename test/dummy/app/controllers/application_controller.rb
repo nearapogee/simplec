@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html {
         flash[:warning] = "You don't have permission to do that."
-        redirect_to root_url
+        redirect_to admin_root_url
       }
       format.js { head 401 }
       format.json { head 401 }

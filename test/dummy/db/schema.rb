@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170814211929) do
 
   create_table "simplec_embedded_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "embeddable_type"
-    t.integer "embeddable_id"
+    t.uuid "embeddable_id"
     t.string "asset_uid"
     t.string "asset_name"
     t.datetime "created_at", null: false

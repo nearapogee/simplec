@@ -1,1 +1,1 @@
-sysadmin = User.create! email: 'sysadmin@example.com', password: 'password'
+sysadmin = User.create! email: 'sysadmin@example.com', password: 'password', sysadmin: true

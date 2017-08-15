@@ -52,6 +52,7 @@ window.simplec.initSummernote = function() {
           url: '/embedded-images',
           dataType: 'json',
           contentType: 'application/json',
+          headers: { 'X-Engine': 'simplec' },
           data: JSON.stringify({
             asset_url: reader.result,
             asset_name: file.name
