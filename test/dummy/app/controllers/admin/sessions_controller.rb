@@ -24,7 +24,7 @@ class Admin::SessionsController < ApplicationController
 
   def destroy
     sign_out!
-    redirect_to root_url(subdomain: 'www')
+    redirect_to simplec.root_url(subdomain: 'www')
   end
 
 end

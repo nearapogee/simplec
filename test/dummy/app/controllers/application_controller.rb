@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_out!
-    session.reset!
+    session.destroy
     @current_user = nil
   end
 
