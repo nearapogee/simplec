@@ -1,9 +1,9 @@
-<h1>admin/pages#edit</h1>
+<h1>admin/documents#edit</h1>
 
 <%= render 'form' %>
 
 <% if current_user.admin? || current_user.sysadmin? %>
-  <%= link_to 'Remove', admin_page_path(@page),
+  <%= link_to 'Remove', admin_document_path(@document),
     method: :delete,
     class: 'btn btn-danger',
     data: {confirm: 'Remove permanently?'}

@@ -1,0 +1,29 @@
+<h1>admin/document_sets#index</h1>
+
+<ul class="list-inline">
+  <li><%= link_to "+ Add Document Set", new_admin_document_set_path, class: 'btn btn-info btn-xs' %></li>
+</ul>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Slug</th>
+      <th>Subdomains</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @document_sets.each do |document_set| %>
+      <tr>
+        <td><%= link_to document_set.name, admin_documents_path(document_set_id: document_set.id) %></td>
+        <td><%= document_set.slug %></td>
+        <td><%= document_set.subdomains.pluck(:name).join(', ') %></td>
+        <td><%= document_set.description.to_s.truncate(32) %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_document_set_path(document_set), class: 'btn btn-success btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

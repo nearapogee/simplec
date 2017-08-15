@@ -1,0 +1,49 @@
+<h1>admin/documents#index</h1>
+
+<ul class="list-inline">
+  <li><%= link_to "+ Add Document", new_admin_document_path, class: 'btn btn-info btn-xs' %></li>
+  <li><%= link_to "Document Sets", admin_document_sets_path, class: 'btn btn-default btn-xs' %></li>
+</ul>
+
+<% if @document_set %>
+  <h2>
+    <%= @document_set.name %> Documents
+    <small><%= link_to "View All", admin_documents_path %></small>
+  </h2>
+<% else %>
+  <h2>All Documents</h2>
+<% end %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Slug</th>
+      <th>Set</th>
+      <th>Subdomains</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.name %></td>
+        <td><%= document.slug %></td>
+        <% if document.document_set %>
+          <td>
+            <%= link_to document.document_set.name, edit_admin_document_set_path(document.document_set) %>
+          </td>
+          <td><%= document.document_set.subdomains.pluck(:name).join(', ') %></td>
+        <% else %>
+          <td><em>Not in a set.</em></td>
+          <td><%= document.subdomains.pluck(:name).join(', ') %></td>
+        <% end %>
+        <td><%= document.description.to_s.truncate(32) %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_document_path(document), class: 'btn btn-success btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

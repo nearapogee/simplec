@@ -1,7 +1,7 @@
 <h1>admin/pages#index</h1>
 
 <% if current_user.admin? || current_user.sysadmin? %>
-  <ul>
+  <ul class="list-inline">
     <% ::Page.subclasses.each do |cls| %>
       <li>
         <%= link_to "+ Add #{cls.name.demodulize} Page", new_admin_page_path(type: cls.name), class: 'btn btn-info btn-xs' %>

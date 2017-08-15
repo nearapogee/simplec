@@ -1,0 +1,72 @@
+<%= form_for [:admin, @document_set] do |f| %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <% unless f.object.errors.blank? %>
+        <ul>
+          <% f.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <% if current_user.sysadmin? %>
+        <div class="form-group">
+          <%= f.label :slug, class: 'control-label' %>
+          <%= f.text_field :slug, class: 'form-control' %>
+          <p class="help-block">This is how to reference this document set from code. Any unique string will do.'</p>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :required %>
+              Required
+            </label>
+          </div>
+          <p class="help-block">This will block users from deleting this document set. Only sysadmins can see this field. Helpful when referencing the slug from code.</p>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <p class="help-block">A name, informational only.</p>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control' %>
+        <p class="help-block">A short text description, informational only.</p>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :subdomain_ids, 'Subdomains' %>
+        <% if f.object.required? && !current_user.sysadmin? %>
+          <p class="form-control-static"><%= f.object.subdomains.join(', ') %></p>
+        <% else %>
+          <%= f.select :subdomain_ids,
+            Simplec::Subdomain.order(name: :asc).collect{|s| [s.name, s.id]},
+            {include_blank: true},
+            multiple: true,
+            class: 'form-control'
+          %>
+      <% end %>
+      <p class="help-block">At least one subdomain is required.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+</div>
+
+<% end %>

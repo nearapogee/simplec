@@ -10,11 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812190028) do
+ActiveRecord::Schema.define(version: 20170814211929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "simplec_document_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "slug"
+    t.string "name"
+    t.boolean "required", default: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_simplec_document_sets_on_name"
+    t.index ["slug"], name: "index_simplec_document_sets_on_slug"
+  end
+
+  create_table "simplec_document_sets_subdomains", force: :cascade do |t|
+    t.uuid "document_set_id"
+    t.uuid "subdomain_id"
+    t.index ["document_set_id", "subdomain_id"], name: "index_simplec_document_sets_subdomains_unique", unique: true
+  end
+
+  create_table "simplec_documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "document_set_id"
+    t.string "slug"
+    t.string "name"
+    t.boolean "required", default: false
+    t.text "description"
+    t.string "file_uid"
+    t.string "file_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_set_id"], name: "index_simplec_documents_on_document_set_id"
+    t.index ["name"], name: "index_simplec_documents_on_name"
+    t.index ["slug"], name: "index_simplec_documents_on_slug"
+  end
+
+  create_table "simplec_documents_subdomains", force: :cascade do |t|
+    t.uuid "document_id"
+    t.uuid "subdomain_id"
+    t.index ["document_id", "subdomain_id"], name: "index_simplec_documents_subdomains_unique", unique: true
+  end
 
   create_table "simplec_embedded_images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "embeddable_type"

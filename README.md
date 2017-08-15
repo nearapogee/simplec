@@ -18,7 +18,8 @@ over the entire ecosystem.
 
 - imagemagick
 
-    For image processing.
+    For image processing. Note there is a known vulnerability, please update
+    accordingly: https://imagetragick.com/
 
 - dragonfly
 
@@ -76,12 +77,6 @@ fallout. ;-)_
 
 ## Usage
 
-1. Add to gemfile
-2. Mount engine
-3. Create pages and corresponding templates
-4. Build, generator, or use an auxilary gem for page admin.
-5. Let users loose.
-
 'www' is considered the default subdomain.
 
 'admin' subdomain is reserved for administration functions if you wish.
@@ -102,6 +97,8 @@ i.e. `_home.html.erb`.
 TODO override field types howto
 
 TODO explain using uuids for keys + pgcrypto
+
+TODO explain how to augment model classes (example in `test/dummy/config/initializers/simplec.rb`)
 
 ### Steps
 
@@ -245,7 +242,23 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 
 ## Roadmap
 
-1. Finish example admin.
+1. TODOS:
+
+    - Embedded image id (integer -> uuid)
+
+    - Check doc view helpers
+
+    - Document `lib/simplec/controller_extensions.rb`
+
+    - Document why _subdomain in subdomain form in admin.
+
+    - rails generate simplec:install
+      Install app/models/page.rb, app/models/page/
+      initializer if needed, with options documented
+
+    - rewrite beginning part of usage
+
+    - simplec_path/simplec_url caching
 
 1. Installer `rails generater simplec:install`
 
@@ -263,18 +276,6 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 1. Use it and file create issues. Somethings are core, other things will be
   relegated to 3rd party extensions.
 2. Pull requests are welcome. See rule #1.
-
-## TODO
-
-- Document `lib/simplec/controller_extensions.rb`
-
-- Document why _subdomain in subdomain form in admin.
-
-- rails generate simplec:install
-  Install app/models/page.rb, app/models/page/
-  initializer if needed, with options documented
-
-- simplec_path/simplec_url caching
 
 ## Running dummy application
 
