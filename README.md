@@ -248,6 +248,8 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 
     - Check doc view helpers
 
+    - Throw clear warning when creating a page without a type
+
     - Document `lib/simplec/controller_extensions.rb`
 
     - Document why _subdomain in subdomain form in admin.
