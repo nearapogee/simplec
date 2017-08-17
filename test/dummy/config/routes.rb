@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get "messages/new", to: "messages#new"
+  post :messages, to: "messages#create"
+
   mount Simplec::Engine => "/"
 
   scope module: :admin, as: :admin, constraints: { subdomain: 'admin' } do

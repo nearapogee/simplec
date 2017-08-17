@@ -12,9 +12,15 @@
   <body>
     <div class="container">
       <ul class="list-inline">
-        <li><%= link_to 'Home', '' %></li>
+        <li><%= link_to 'Home', simplec_path_for('') %></li>
       </ul>
+      <% flash.each do |key, message| %>
+        <div class="alert alert-<%= key=='notice'?'success':'danger' %>">
+          <%= message %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>
+
 </html>

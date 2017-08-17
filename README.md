@@ -251,6 +251,8 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 
     - Throw clear warning when creating a page without a type
 
+    - main_app document or method_missing
+
     - Document `lib/simplec/controller_extensions.rb`
 
     - Document why _subdomain in subdomain form in admin.
@@ -263,7 +265,7 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 
     - utilize thread local variable for found subdomain in #subdomain
 
-    - simplec_path/simplec_url caching
+1. Sitemap
 
 1. Installer `rails generater simplec:install`
 

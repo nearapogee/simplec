@@ -39,8 +39,8 @@ module Simplec
     validates :type,
       presence: true
     validates :path,
-      presence: true,
       uniqueness: { scope: :subdomain_id }
+    validate :validate_path_not_nil!
     validates :layout,
       inclusion: {in: :layouts, allow_blank: true}
     validates :title,
@@ -167,7 +167,7 @@ module Simplec
     # @return [String] the computed path for the page
     def build_path
       _pages = self.parents.reverse + [self]
-      self.path = "/#{_pages.map(&:slug).reject(&:blank?).join('/')}"
+      self.path = _pages.map(&:slug).reject(&:blank?).join('/')
     end
 
     # Sets the #subdomain t that of the parent.
@@ -240,6 +240,11 @@ module Simplec
     class AlreadyLinkedEmbeddedImage < StandardError; end
 
     private
+
+    def validate_path_not_nil!
+      return unless self.path.nil?
+      errors.add :path, "cannot be nil"
+    end
 
     def self.data_field(name)
       define_method(name) { fields[name.to_s] }

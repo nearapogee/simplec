@@ -1,18 +1,12 @@
 require_dependency "simplec/application_controller"
+require_dependency "simplec/page_action_helpers"
 
 module Simplec
   class PagesController < ApplicationController
+    include Simplec::PageActionHelpers
 
     def show
-      @page = page("/#{params[:path]}")
-      render layout: layout(@page)
-    end
-
-    private
-
-    def layout(page)
-      [page.layout, page.subdomain.default_layout, 'public']. # TODO allow config for public
-        reject(&:blank?).first
+      render_path params[:path] || ''
     end
 
   end

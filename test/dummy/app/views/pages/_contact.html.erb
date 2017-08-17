@@ -1,0 +1,31 @@
+<div class="wysiwyg">
+  <%= @page.body.to_s.html_safe %>
+</div>
+
+<%= form_for @message || Message.new, url: main_app.messages_path do |f| %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <% unless f.object.errors.blank? %>
+        <ul>
+          <% f.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <%= f.label :email, class: 'control-label' %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="field-group">
+    <%= f.label :body, class: 'control-label' %>
+    <%= f.text_area :body, class: 'form-control' %>
+  </div>
+
+  <%= f.submit %>
+
+<% end %>

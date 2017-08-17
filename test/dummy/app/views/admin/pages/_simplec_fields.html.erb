@@ -28,7 +28,7 @@
 <div class="form-group">
   <%= f.label :parent_id, 'Parent page', class: 'control-label'%>
   <%= f.select :parent_id,
-    Page.order(path: :asc).map {|p| [simplec_url(p), p.id]},
+    Page.order(path: :asc).map {|p| [simplec_url_for(p), p.id]},
     {include_blank: true},
     class: 'form-control'
   %>
@@ -38,7 +38,7 @@
 <% if f.object.path.present? && f.object.subdomain.present? %>
   <div class="form-group">
     <%= f.label :path, class: 'control-label' %>
-    <p class="form-control-static"><%= simplec_url(f.object) %></p>
+    <p class="form-control-static"><%= simplec_url_for(f.object) %></p>
     <p class="help-block">Updated on save. Not editable.</p>
   </div>
 <% end %>
