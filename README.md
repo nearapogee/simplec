@@ -1,29 +1,35 @@
 # Simplec
 
-### A CMS for developers, built by developers.
+### A CMS that stays out of the way.
 
 This gem handles all of the rote parts of a CMS, but gets out of the way for
-everything else. In Rails it is easy to build things from scratch, but it is
-a waste of resources to build again and again. This library is an attempt to
-get all of the good parts of a CMS without the baggage of a CMS that takes
-over the entire ecosystem.
+everything else.
+
+In Rails it is easy to build things from scratch, but it is a waste of resources
+to build again and again. This library is an attempt to get all of the good
+parts of a CMS without the baggage of a CMS that takes over the entire
+ecosystem.
 
 ## Dependencies
+
 - rails >= 5.0.5
 
-- pg >= 0.21.0; postgres >= 9.5
+    This probably can be lowered to older versions.
 
-    We hate dependencies, but postgres is just too good. We use it for search
-    and JSONB.
+- pg >= 0.21.0; Postgres >= 9.5
 
-- imagemagick
-
-    For image processing. Note there is a known vulnerability, please update
-    accordingly: https://imagetragick.com/
+    We hate dependencies, but Postgres is just too good. We use it for search
+    and JSONB. If you think we could make this database agnostic, we are open
+    for contributions!
 
 - dragonfly
 
-    We still hate dependencies, but this is a necessity and the best option.
+    We still hate dependencies, but this is a necessity and one of the best
+    options. We might change it out for ActiveStorage.
+
+- imagemagick
+
+    For image processing.
 
 ## Recommended Dependencies
 
@@ -48,15 +54,19 @@ fallout. ;-)_
 
 
 ## Features
+
 - Pages with Templates
 
 - Subdomain support
 
-- Use application models or assets in CMS pages
-
 - Search (coming soon)
 
+- Documents and Document Sets
+
+- Use application models or assets in CMS pages
+
 ## Anti-Features
+
 - User management
 
 - Permissions
@@ -238,32 +248,34 @@ used to generate uuid primary keys.
 Installation varies per operating system. Image magic is used by dragonfly
 for on the fly (then cached) image manipulation.
 
+Note there is a known vulnerability, please update accordingly: https://imagetragick.com/
+
 See this page for a good cheat sheet: http://markevans.github.io/dragonfly/imagemagick
 
 ## Roadmap
 
 1. TODOS:
 
-    - Check doc view helpers
+  - Check doc view helpers
 
-    - Add config options for uuid vs integer ids, maybe check if page is using
-      uuid/id if table exists to determine going forward. Add note in README
+  - Add config options for uuid vs integer ids, maybe check if page is using
+    uuid/id if table exists to determine going forward. Add note in README
 
-    - Throw clear warning when creating a page without a type
+  - Throw clear warning when creating a page without a type
 
-    - main_app document or method_missing
+  - main_app document or method_missing
 
-    - Document `lib/simplec/controller_extensions.rb`
+  - Document `lib/simplec/controller_extensions.rb`
 
-    - Document why _subdomain in subdomain form in admin.
+  - Document why _subdomain in subdomain form in admin.
 
-    - rails generate simplec:install
-      Install app/models/page.rb, app/models/page/
-      initializer if needed, with options documented
+  - rails generate simplec:install
+    Install app/models/page.rb, app/models/page/
+    initializer if needed, with options documented
 
-    - rewrite beginning part of usage
+  - rewrite beginning part of usage
 
-    - utilize thread local variable for found subdomain in #subdomain
+  - utilize thread local variable for found subdomain in #subdomain
 
 1. Sitemap
 
