@@ -50,7 +50,7 @@ application.**
 
 _Optionally, you can create a separate set of assets for only the admin via
 standard Rails methods. Or you could not include them and deal with the
-fallout. ;-)_
+fallout. We are happy to accept pull requests! ;-)_
 
 
 ## Features
@@ -61,7 +61,7 @@ fallout. ;-)_
 
 - Search (coming soon)
 
-- Documents and Document Sets
+- Documents and Document Sets (local or S3/Google/etc)
 
 - Use application models or assets in CMS pages
 
@@ -256,26 +256,28 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 
 1. TODOS:
 
-  - Check doc view helpers
+    - Check doc view helpers
 
-  - Add config options for uuid vs integer ids, maybe check if page is using
-    uuid/id if table exists to determine going forward. Add note in README
+    - Add config options for uuid vs integer ids, maybe check if page is using
+      uuid/id if table exists to determine going forward. Add note in README
 
-  - Throw clear warning when creating a page without a type
+    - Throw clear warning when creating a page without a type
 
-  - main_app document or method_missing
+    - main_app document or method_missing
 
-  - Document `lib/simplec/controller_extensions.rb`
+    - Document `lib/simplec/controller_extensions.rb`
 
-  - Document why _subdomain in subdomain form in admin.
+    - Document why _subdomain in subdomain form in admin.
 
-  - rails generate simplec:install
-    Install app/models/page.rb, app/models/page/
-    initializer if needed, with options documented
+    - rails generate simplec:install
+      Install app/models/page.rb, app/models/page/
+      initializer if needed, with options documented
 
-  - rewrite beginning part of usage
+    - rewrite beginning part of usage
 
-  - utilize thread local variable for found subdomain in #subdomain
+    - utilize thread local variable for found subdomain in #subdomain
+
+    - page previews?
 
 1. Sitemap
 
@@ -315,6 +317,11 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 3. Migrate database
 
         rake db:migrate
+
+4. Run the documentation server
+
+        gem install yard
+        yard server -r --verbose .yardopts
 
 
 ## Contributors

@@ -6,7 +6,14 @@ module Simplec
     include Simplec::PageActionHelpers
 
     def show
-      render_path params[:path] || ''
+      begin
+        render_path params[:path] || ''
+      rescue ActiveRecord::SubclassNotFound => e
+        # TODO add proc config for error notification, airbrake, etc
+        #
+        Rails.logger.info e
+        render status: 404
+      end
     end
 
   end

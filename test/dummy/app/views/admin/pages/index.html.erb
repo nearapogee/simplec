@@ -27,7 +27,7 @@
       <tr>
         <td><%= page.subdomain.try(:name) %></td>
         <td>
-          <%= link_to page.path, simplec_url_for(page), class: 'text-info', target: :_blank %>
+          <%= link_to "/#{page.path}", simplec_url_for(page), class: 'text-info', target: :_blank %>
         </td>
         <td><%= page.type.to_s.demodulize %></td>
         <td><%= page.title %></td>

@@ -5,7 +5,7 @@ class Admin::PagesController < ApplicationController
   skip_before_action :require_sysadmin!
 
   def index
-    @pages = Simplec::Page.includes(:subdomain).
+    @pages = Simplec::Admin::Page.includes(:subdomain).
       order("simplec_subdomains.name ASC, simplec_pages.path ASC")
   end
 
