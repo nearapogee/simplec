@@ -23,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "jquery-rails"
   s.add_development_dependency "bootstrap-sass", ">= 3.0.0"
   s.add_development_dependency "bcrypt"
+  s.add_development_dependency "redcarpet"
 end

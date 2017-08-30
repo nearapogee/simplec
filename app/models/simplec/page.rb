@@ -4,20 +4,26 @@ module Simplec
   #
   # == Model and Template Relationship.
   #
-  # Each page has a class located in:
-  #   app/models/page/NAME.rb
+  # This is a para with `code`. WTF
   #
-  # Each page has a partial template in:
-  #   app/views/pages/_NAME.html.erb
+  # Each page has:
   #
-  #   Where NAME is the demodulized, snake-case name of the Page Subclasss. For
-  #   example:
+  # - a class located in: `app/models/page/NAME.rb`
   #
-  #     class Page::Home < Page
-  #       field :h1
-  #     end
+  # - a partial template in: +app/views/pages/_NAME.html.erb+
   #
-  #   Would have a have a template in `app/views/pages/_home.html.erb`.
+  # Where NAME is the demodulized, snake-case name of the Page Subclass.
+  #
+  # @example Class and template
+  #
+  #   # app/models/page/home.rb
+  #   class Page::Home < Page
+  #     field :h1
+  #   end
+  #
+  #   <!-- app/views/pages/_home.html.erb -->
+  #   <h1>My Application</h1>
+  #   <h2><%= @page.tagline %></h2>
   #
   # @!visibility public
   class Page < ApplicationRecord

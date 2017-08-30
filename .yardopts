@@ -1,4 +1,9 @@
 --no-private
+--protected
+-m markdown
+--exclude application_mailer
+app/**/*.rb
+lib/**/*.rb
 -
 README.md
 MIT-LICENSE

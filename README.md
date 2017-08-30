@@ -2,8 +2,7 @@
 
 ### A CMS that stays out of the way.
 
-This gem handles all of the rote parts of a CMS, but gets out of the way for
-everything else.
+This gem handles all of the rote parts of a CMS, but gets out of the way for everything else.
 
 In Rails it is easy to build things from scratch, but it is a waste of resources
 to build again and again. This library is an attempt to get all of the good
@@ -78,6 +77,9 @@ fallout. We are happy to accept pull requests! ;-)_
 
 - simplec-blog: Don't always need or want a blog bundled in. (You might have
   your own.)
+
+- simplec-sections: Sections compose pages. Configure pages composed of Sections
+  rather than taking a page hook line and sinker.
 
 - simplec-admin: Opinionated, prebuilt way of managing pages. Take it or leave
   it. Or don't mount it and generate scaffold controllers and views for basic
@@ -279,6 +281,10 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 
     - page previews?
 
+    - configure uuid or integer pk/fk
+
+    - note about migration versions on old rails installs
+
 1. Sitemap
 
 1. Installer `rails generater simplec:install`
@@ -292,6 +298,8 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 1. Optional Gems
 
 1. Remove as many dependencies as possible.
+
+1. github-markdown for markup?
 
 ## Contributing
 1. Use it and file create issues. Somethings are core, other things will be
@@ -321,7 +329,7 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
 4. Run the documentation server
 
         gem install yard
-        yard server -r --verbose .yardopts
+        yard server -r --no-cache --no-save --verbose --debug --backtrace
 
 
 ## Contributors
