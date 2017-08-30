@@ -3,6 +3,7 @@ require_dependency "simplec/page_action_helpers"
 
 module Simplec
   class PagesController < ApplicationController
+    include Simplec::ActionController::Extensions
     include Simplec::PageActionHelpers
 
     def show
