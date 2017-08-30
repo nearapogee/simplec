@@ -35,7 +35,7 @@ module Simplec
     belongs_to :parent,
       class_name: 'Page',
       optional: true
-    has_many :childern,
+    has_many :children,
       class_name: 'Page',
       foreign_key: :parent_id
     has_many :embedded_images,
