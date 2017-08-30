@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simplec (0.4.2)
+    simplec (0.4.3)
       dragonfly (>= 1.0.0)
       pg (>= 0.21.0)
       rails (>= 5.0.5)

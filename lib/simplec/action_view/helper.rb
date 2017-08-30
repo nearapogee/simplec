@@ -106,7 +106,7 @@ module Simplec
             return @_subpages[key] = Array.new
           end
 
-          @_subpages[key] = page.subpages
+          @_subpages[key] = page.children
         end
 
         @_subpages[key].respond_to?(:merge) && options[:conditions] ?
