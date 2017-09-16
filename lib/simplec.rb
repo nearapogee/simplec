@@ -12,6 +12,13 @@ module Simplec
 
   # Get application view helpers.
   #
+  # @note
+  #   A copy of ApplicationHelper has been removed from the module tree but is still active!
+  #
+  #   If that occurs it is because the Module has been changed but app needs to
+  #   be restarted because they are loaded at initialize. require_dependency
+  #   might be able to fix it.
+  #
   # @example append helper
   #   Simplec.helpers << ::ApplicationHelper
   #

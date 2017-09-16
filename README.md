@@ -11,9 +11,10 @@ ecosystem.
 
 ## Dependencies
 
-- rails >= 5.0.5
+- rails >= 5.1.0
 
-    This probably can be lowered to older versions.
+    If you want to use this with earlier versions of rails, please create a
+    github issue.
 
 - pg >= 0.21.0; Postgres >= 9.5
 
@@ -331,6 +332,11 @@ See this page for a good cheat sheet: http://markevans.github.io/dragonfly/image
         gem install yard
         yard server -r --no-cache --no-save --verbose --debug --backtrace
 
+## Moving Backwards
+
+- Depends on 5.1.x because of on_load hooks, specifically
+  :action_controller_base. Could be moved back, but need to figure out
+  equivalent ways of loading in the engine.
 
 ## Contributors
 
