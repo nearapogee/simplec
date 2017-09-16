@@ -83,7 +83,7 @@ module Simplec
       #
       # Example:
       #
-      #   <% subpages('/give-volunteer', conditions: ->{ order(title: :asc) }).each do |page| %>
+      #   <% subpages('give-volunteer', conditions: ->{ order(title: :asc) }).each do |page| %>
       #     ... do something with page ...
       #   <% end%>
       def subpages(page_or_path, options={})
@@ -106,7 +106,7 @@ module Simplec
             return @_subpages[key] = Array.new
           end
 
-          @_subpages[key] = page.children
+          @_subpages[key] = page.children.includes(:subdomain)
         end
 
         @_subpages[key].respond_to?(:merge) && options[:conditions] ?

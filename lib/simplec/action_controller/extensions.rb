@@ -22,14 +22,12 @@ module Simplec
       # @return [Simplec::Page]
       def page(path, options={})
         @_page ||= Hash.new
-        return @_page[path] if @_page[path]
-
-        _subdomain = options[:subdomain] ?
-          Subdomain.find_by!(name: options[:subdomain]) :
-          subdomain
+        key = "#{subdomain(options[:subdomain])};#{path}"
+        return @_page[key] if @_page[key]
 
         # TODO add raise option for find_by!
-        @_page[path] = _subdomain.pages.find_by!(path: path)
+        @_page[key] = subdomain(options[:subdomain]).pages.
+          includes(:subdomain).find_by!(path: path)
       end
 
       # Get the path of a page.
