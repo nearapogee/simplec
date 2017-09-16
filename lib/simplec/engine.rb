@@ -7,12 +7,14 @@ module Simplec
         include Simplec::ActionController::Extensions
         prepend Simplec::PageActionHelpers
         helper Simplec::ActionView::Helper
+        helper *Simplec.helpers
       }
       ActiveSupport.on_load(:active_record) { Simplec.load_pages }
     end
   end
 
   def self.load_pages
-    Dir["#{Rails.root}/app/models/page/*.rb"].each {|file| require_dependency file }
+    Dir["#{Rails.root}/app/models/page/*.rb"].
+      each {|file| require_dependency file }
   end
 end

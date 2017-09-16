@@ -1,3 +1,5 @@
+Simplec.helpers += [::ApplicationHelper]
+# OR Simplec.helpers << ::ApplicationHelper
 Simplec::Document.class_eval do
   scope :filter_document_set, ->(document_set=nil) {
     document_set && document_set.persisted? ?
