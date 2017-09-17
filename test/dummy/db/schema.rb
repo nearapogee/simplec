@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814211929) do
+ActiveRecord::Schema.define(version: 20170917144923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,10 +76,15 @@ ActiveRecord::Schema.define(version: 20170814211929) do
     t.string "layout"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.tsvector "tsv"
+    t.jsonb "query", default: {}
+    t.jsonb "text", default: {"a"=>nil, "b"=>nil, "c"=>nil, "d"=>nil}
+    t.index "query jsonb_path_ops", name: "simplec_pages_query", using: :gin
     t.index ["parent_id"], name: "index_simplec_pages_on_parent_id"
     t.index ["path"], name: "index_simplec_pages_on_path"
     t.index ["subdomain_id", "path"], name: "index_simplec_pages_on_subdomain_id_and_path", unique: true
     t.index ["subdomain_id"], name: "index_simplec_pages_on_subdomain_id"
+    t.index ["tsv"], name: "index_simplec_pages_on_tsv", using: :gin
     t.index ["type"], name: "index_simplec_pages_on_type"
   end
 
