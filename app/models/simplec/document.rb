@@ -25,6 +25,7 @@ module Simplec
     end
 
     def validate_slug!
+      return if self.slug.nil?
       similar = self.class.where(slug: self.slug).where.not(id: self.id)
       return if similar.size == 0
       return if (
