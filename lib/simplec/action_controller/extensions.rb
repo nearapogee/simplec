@@ -48,8 +48,9 @@ module Simplec
       #
       # @return [String, nil] path of page, or nil
       def simplec_path_for(page_or_path, options={})
-        page = page_for(page_or_path, options.extract!(:raise))
+        page = page_for(page_or_path, options)
         return unless page
+        options.delete(:raise)
         simplec.page_path options.merge(
           path: page.path
         )
@@ -73,8 +74,9 @@ module Simplec
       #
       # @return [String, nil] path of page, or nil
       def simplec_url_for(page_or_path, options={})
-        page = page_for(page_or_path, options.extract!(:raise))
+        page = page_for(page_or_path, options)
         return unless page
+        options.delete(:raise)
         simplec.page_url options.merge(
           subdomain: page.subdomain.try(:name),
           path: page.path
