@@ -105,8 +105,11 @@ module Simplec
     # @!scope class
     scope :search, ->(term, options={}) {
       _types      = Array(options.delete(:types))
+      _subdomains = Array(options.delete(:subdomains))
 
       query = all
+      query = query.includes(:subdomain).
+        where(simplec_subdomains: {name: _subdomains}) if _subdomains.any?
       query = query.where(type: _types) if _types.any?
       options.each { |k,v| query = query.where("query->>:k = :v", k: k, v: v) }
 
