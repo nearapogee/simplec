@@ -392,13 +392,12 @@ module Simplec
     # @!visibility private
     module Normalizers
       def slug=(val)
-        val = val ? val.to_s.split('/').reject(&:blank?).join('/') : val
-        super val
+        super clean_path(val)
       end
 
       def slug
         if self.parent_id && self.parent.nil?
-          self.path.to_s.split('/').reject(&:blank?).join('/')
+          clean_path(self.path)
         else
           super
         end
@@ -409,6 +408,12 @@ module Simplec
     class AlreadyLinkedEmbeddedImage < StandardError; end
 
     private
+
+    def clean_path(val)
+      val ?
+        val.to_s.strip.gsub(/[\s-]+/, '-').gsub(/[^\w-]/, '').split('/').reject(&:blank?).join('/') :
+        val
+    end
 
     def validate_path_not_nil!
       return unless self.path.nil?
