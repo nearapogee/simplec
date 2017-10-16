@@ -3,6 +3,7 @@ require "simplec/embedded_image_actions"
 require 'simplec/action_controller/extensions'
 require 'simplec/action_view/helper'
 require "simplec/page_action_helpers"
+require "simplec/nokogiri_builder"
 
 
 # Configuration details will go here.

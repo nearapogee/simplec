@@ -1,0 +1,10 @@
+xml.urlset('xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9') do
+  @pages.find_each do |page|
+    xml.url {
+      xml.loc         simplec_url_for(page)
+      xml.lastmod     page.updated_at.strftime("%F")
+      xml.changefreq  'daily'
+      xml.priority    1.0
+    }
+  end
+end
