@@ -24,6 +24,10 @@ $.summernote.options.toolbar = [
 
 if (!window.simplec) window.simplec = {};
 
+window.simplec.csrfToken = function() {
+  return $('meta[name=csrf-token]').attr('content');
+};
+
 window.simplec.initSummernote = function() {
   $('.editor-field').each(function(idx, el) {
     var $el = $(el);
@@ -55,7 +59,10 @@ window.simplec.initSummernote = function() {
               url: '/embedded-images',
               dataType: 'json',
               contentType: 'application/json',
-              headers: { 'X-Engine': 'simplec' },
+              headers: {
+                'X-Engine': 'simplec',
+                'X-CSRF-Token': simplec.csrfToken()
+              },
               data: JSON.stringify({
                 asset_url: reader.result,
                 asset_name: file.name
