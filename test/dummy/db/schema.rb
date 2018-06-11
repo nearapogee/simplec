@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917144923) do
+ActiveRecord::Schema.define(version: 2018_06_08_205153) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "pgcrypto"
+  enable_extension "plpgsql"
 
   create_table "simplec_document_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "slug"
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(version: 20170917144923) do
     t.tsvector "tsv"
     t.jsonb "query", default: {}
     t.jsonb "text", default: {"a"=>nil, "b"=>nil, "c"=>nil, "d"=>nil}
-    t.index "query jsonb_path_ops", name: "simplec_pages_query", using: :gin
     t.index ["parent_id"], name: "index_simplec_pages_on_parent_id"
     t.index ["path"], name: "index_simplec_pages_on_path"
+    t.index ["query"], name: "simplec_pages_query", opclass: :jsonb_path_ops, using: :gin
     t.index ["subdomain_id", "path"], name: "index_simplec_pages_on_subdomain_id_and_path", unique: true
     t.index ["subdomain_id"], name: "index_simplec_pages_on_subdomain_id"
     t.index ["tsv"], name: "index_simplec_pages_on_tsv", using: :gin
@@ -93,7 +93,9 @@ ActiveRecord::Schema.define(version: 20170917144923) do
     t.string "default_layout"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published", default: false
     t.index ["name"], name: "index_simplec_subdomains_on_name", unique: true
+    t.index ["published"], name: "index_simplec_subdomains_on_published"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

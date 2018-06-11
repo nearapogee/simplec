@@ -6,7 +6,7 @@ module Simplec
       not_admin = request.subdomain != 'admin'
       subdomain = Simplec::Subdomain.find_by(name: request.subdomain)
 
-      match = simplec || (present && not_admin && subdomain)
+      match = simplec || (present && not_admin && subdomain && subdomain.published)
 
       if match
         Thread.current[:simplec_subdomain] = subdomain
@@ -16,11 +16,19 @@ Simplec request received.
   Simplec Engine: #{not_admin}
   LOG
       else
-        Rails.logger.info <<-LOG
+        if subdomain && !subdomain.published
+          Rails.logger.info <<-LOG
+Simplec Subdomain '#{request.subdomain}' found, but not published.
+  ActionDispatch::Request#original_url: #{request.original_url}
+  'admin' subdomain bypass: #{!not_admin}
+  LOG
+        else
+          Rails.logger.info <<-LOG
 Simplec Subdomain '#{request.subdomain}' was not found.
   ActionDispatch::Request#original_url: #{request.original_url}
   'admin' subdomain bypass: #{!not_admin}
   LOG
+        end
       end
 
       match

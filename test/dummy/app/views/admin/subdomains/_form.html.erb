@@ -30,6 +30,15 @@
         <p class="help-block">If blank, then the application layout will be used.</p>
       </div>
 
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :published, class: 'form-control' %> Publish
+          </label>
+        </div>
+        <p class="help-block">If unselected, subdomain and all pages will not be available publically.</p>
+      </div>
+
       <%= f.submit class: 'btn btn-info' %>
     </div>
   </div>

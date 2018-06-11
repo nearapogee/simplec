@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Published</th>
       <th>Default Layout</th>
       <th></th>
     </tr>
@@ -17,6 +18,10 @@
     <% @subdomains.each do |subdomain| %>
       <tr>
         <td><%= subdomain.name %></td>
+        <td>
+          <%= check_box_tag :published, '1', subdomain.published,
+            disabled: true
+          %></td>
         <td><%= subdomain.default_layout %></td>
         <td>
           <%= link_to 'Edit', edit_admin_subdomain_path(subdomain), class: 'btn btn-success btn-xs' %>

@@ -42,7 +42,7 @@ class Admin::SubdomainsController < ApplicationController
 
   def subdomain_params
     params.require(:_subdomain).permit(
-      :name, :description, :default_layout
+      :name, :description, :default_layout, :published
     )
   end
 end
