@@ -22,12 +22,9 @@
     <div class="container">
       <div class="footer">
         <ul class="list-inline">
-
-          <!-- here or index.html.erb? -->
-          <% @subdomains.each do |subdomain| %>
-            <li><%= link_to simplec_url_for(subdomain) %></li>
+          <% @pages.each do |page| %>
+            <li><%= link_to "#{page.title}", simplec_url_for(page) %></li>
           <% end %>
-          
         </ul>
       </div>
     </div>
