@@ -23,10 +23,11 @@
       <div class="footer">
         <ul class="list-inline">
           <% @pages.each do |page| %>
-            <li><%= link_to "#{page.title}", simplec_url_for(page) %></li>
+          <li><%= link_to "#{page.title}", simplec_url_for(page) %></li>
           <% end %>
         </ul>
       </div>
     </div>
   </body>
 </html>
+ 
