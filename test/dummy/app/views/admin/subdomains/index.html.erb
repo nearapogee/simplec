@@ -20,6 +20,7 @@
         <td><%= subdomain.default_layout %></td>
         <td>
           <%= link_to 'Edit', edit_admin_subdomain_path(subdomain), class: 'btn btn-success btn-xs' %>
+          <%= link_to simplec_url_for(subdomain) %>
         </td>
       </tr>
     <% end %>

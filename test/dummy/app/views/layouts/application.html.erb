@@ -19,5 +19,17 @@
       </ul>
       <%= yield %>
     </div>
+    <div class="container">
+      <div class="footer">
+        <ul class="list-inline">
+
+          <!-- here or index.html.erb? -->
+          <% @subdomains.each do |subdomain| %>
+            <li><%= link_to simplec_url_for(subdomain) %></li>
+          <% end %>
+          
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
