@@ -5,15 +5,18 @@ class Admin::PagesController < ApplicationController
   skip_before_action :require_sysadmin!
 
   def index
+    @pages = Simplec::Admin::Page.all
     @pages = Simplec::Admin::Page.includes(:subdomain).
       order("simplec_subdomains.name ASC, simplec_pages.path ASC")
   end
 
   def new
+    @pages = Simplec::Admin::Page.all
     @page = Simplec::Page.type(params[:type] || "TODO list dir contents").new
   end
 
   def create
+    @pages = Simplec::Admin::Page.all
     @page = Simplec::Page.type(params[:page][:type]).new(page_params)
 
     if @page.save
@@ -24,10 +27,12 @@ class Admin::PagesController < ApplicationController
   end
 
   def edit
+    @pages = Simplec::Admin::Page.all
     @page = Simplec::Page.find(params[:id])
   end
 
   def update
+    @pages = Simplec::Admin::Page.all
     @page = Simplec::Page.find(params[:id])
 
     if @page.update(page_params)
@@ -38,6 +43,7 @@ class Admin::PagesController < ApplicationController
   end
 
   def destroy
+    @pages = Simplec::Admin::Page.all
     @page = Simplec::Page.find(params[:id])
     if @page.destroy
       redirect_to admin_pages_url

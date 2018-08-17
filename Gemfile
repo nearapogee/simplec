@@ -15,3 +15,5 @@ gemspec
 
 #gem 'pry'
 #gem 'binding_of_caller'
+
+gem 'rails', '~> 5.2.0.beta2'
