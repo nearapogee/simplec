@@ -2,17 +2,14 @@ class Admin::SubdomainsController < ApplicationController
   skip_before_action :require_sysadmin!
 
   def index
-    @pages = Simplec::Admin::Page.all
     @subdomains = Simplec::Subdomain.order(name: :asc)
   end
 
   def new
-    @pages = Simplec::Admin::Page.all
     @subdomain = Simplec::Subdomain.new
   end
 
   def create
-    @pages = Simplec::Admin::Page.all
     @subdomain = Simplec::Subdomain.new(subdomain_params)
 
     if @subdomain.save
@@ -23,12 +20,10 @@ class Admin::SubdomainsController < ApplicationController
   end
 
   def edit
-    @pages = Simplec::Admin::Page.all
     @subdomain = Simplec::Subdomain.find(params[:id])
   end
 
   def update
-    @pages = Simplec::Admin::Page.all
     @subdomain = Simplec::Subdomain.find(params[:id])
 
     if @subdomain.update(subdomain_params)
@@ -39,7 +34,6 @@ class Admin::SubdomainsController < ApplicationController
   end
 
   def destroy
-    @pages = Simplec::Admin::Page.all
     @subdomain = Simplec::Subdomain.find(params[:id])
     @subdomain.destroy!
   end
