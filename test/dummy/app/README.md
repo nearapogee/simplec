@@ -1,7 +1,7 @@
-# Example.com
-  An example application to showcase how Simplec works inside your Rails application. Follow the steps below to run the dummy app in your local environment.
+# Simplec Dummy Application
+  This is an example application to showcase how Simplec will work inside a Rails application. Follow the steps below to run the dummy app in your local environment.
 
-# Running Dummy Application
+# Running the Dummy Application
   1. Create simplec postgres user
 
         # -s for superuser in development
@@ -25,29 +25,19 @@
         gem install yard
         yard server -r --no-cache --no-save --verbose --debug --backtrace
 
-# Using Example.com
+# Usage
   1. Create an example user in seeds.db
         
         You can use this code: sysadmin = User.create! email: 'sysadmin@example.com', password: 'password', sysadmin: true
   
-  2. You may want to add a few entries into your /etc/hosts file, i.e. admin.site.loc, www.site.loc, site.loc all resolving to 127.0.0.1 so you can use subdomains locally.
+  2. If you have not done so, add a few entries into your /etc/hosts file, i.e. admin.site.loc, www.site.loc, site.loc all resolving to 127.0.0.1 so you can use subdomains locally.
 
   3. Run server on your port of choice and then admin.site.loc:3030 (or whichever port you choose).
 
   4. You will see the admin page, and from there you can navigate, add subpages or subdomains. 
 
 # Footer Links
-  Links in the footer are subpages and are populated into the footer automatically. Client should add these pages through the admin interface rather than hardcoding them into the view. If URLs to subpages are hardcoded into the view, they will not persist when the site is removed from client's local server. 
+Links in the footer are subpages and are populated into the footer automatically when a subpage is created. Client should add these pages through the admin interface rather than hardcoding them into the view. If URLs to subpages are hardcoded into the view, they will not persist when the site is removed from client's local server. 
 
-  The method for looping through subpage links can be found in application.html.erb.
-
-  
-
-
-
-
-
-
-
- 
+The method for looping through subpage links can be found in application.html.erb.
 
