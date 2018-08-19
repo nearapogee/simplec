@@ -26,13 +26,6 @@ class Admin::PagesController < ApplicationController
 
   def edit
     @page = Simplec::Page.find(params[:id])
-
-    # if @page.save
-    #   redirect_to admin_pages_path(@page)
-    # else
-    #   render plain: "file not saved"
-    # end
-
   end
 
   def update
