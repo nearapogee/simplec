@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :require_admin!
   before_action :require_sysadmin!
-  before_action :allow_subpages!
+  before_action :add_subpages!
 
   rescue_from User::Unauthenticated,
     with: :unauthenticated!
@@ -45,8 +45,8 @@ class ApplicationController < ActionController::Base
     raise User::Unauthorized unless current_user.sysadmin?
   end
 
-  def allow_subpages!
-    @pages = Simplec::Admin::Page.all
+  def add_subpages!
+    @pages = Simplec::Admin::Page.all # this works the same without Admin, is one more correct than the other?
   end
 
   def unauthenticated!
