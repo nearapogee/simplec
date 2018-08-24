@@ -9,7 +9,8 @@ module Simplec
         helper Simplec::ActionView::Helper
         helper *Simplec.helpers
       }
-      ActiveSupport.on_load(:active_record) { Simplec.load_pages }
+      # Not required anymore, keep in Page Model in host application
+      # ActiveSupport.on_load(:active_record) { Simplec.load_pages }
     end
   end
 
